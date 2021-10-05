@@ -1,0 +1,23 @@
+{{!
+    Include generated header
+--}}
+#include "EntityDefinitions.h"
+
+{{!
+    Include each entity's header file
+--}}
+{{#each pairs}}
+#include "{{this.Item1}}.h"
+{{/each}}
+
+Entity* createEntity(int id)
+{
+    switch(id){
+    {{#each pairs}}
+    case {{Up this.Item1}}:
+    {
+        return new {{this.Item1}};
+    }
+    {{/each}}
+    }
+}

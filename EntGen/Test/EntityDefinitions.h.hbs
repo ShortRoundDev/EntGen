@@ -1,0 +1,19 @@
+{{!
+    Say, for example, you have a base "Entity" class for all entities in your game
+--}}
+#include "Entity.h"
+
+{{!
+    key-values are loaded into an object called "pairs"
+    which is a list of C# tuples (`List<(string, int)>`),
+    so the "key" is `Item1` and the "value" is `Item2`
+--}}
+
+{{!
+    The "Up" Handlebars helper performs a `String.ToUpper()` on the item
+--}}
+{{#each pairs}}
+#define {{Up this.Item1}} {{this.Item2}}
+{{/each}}
+
+Entity* createEntity(int id);

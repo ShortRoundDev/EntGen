@@ -1,0 +1,23 @@
+Entity* createEntity(int id)
+{
+    switch(id)
+    {
+        {{!
+            "Entries" is a list of dictionary objects, where each key is an attribute
+            and each value is the string value of that attribute
+        --}}
+        {{#each entries}}
+        case {{this.Id}}:
+        {
+            Entity* e = new Entity;
+            {{#each this}}
+            {{! ID and name are not components! }}
+            {{#unless (Or (Eq @key "Id") (Eq @key "Name"))}}
+            //{{@key}} = {{{this}}}
+            e->components.push_back(new {{@key}}Component({{{this}}}));
+            {{/unless}}
+            {{/each}}
+        }
+        {{/each}}
+    }
+}

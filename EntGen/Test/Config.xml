@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities>
+    <entity Name="Skeleton" Id="1" Solid="true" Health="20" Model="&quot;Skeleton.obj&quot;"/>
+    <entity Name="Ghost" Id="2" Solid="false" Model="&quot;Ghost.obj&quot;"/>
+</entities>

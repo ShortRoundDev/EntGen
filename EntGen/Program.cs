@@ -165,7 +165,7 @@ namespace EntGen
         {
             Handlebars.RegisterHelper("Up", (writer, context, parameters) =>
             {
-                if(parameters.Count() != 1 || parameters[0] is not string s)
+                if (parameters.Count() != 1 || parameters[0] is not string s)
                 {
                     return;
                 }
@@ -174,7 +174,7 @@ namespace EntGen
 
             Handlebars.RegisterHelper("Eq", (writer, context, parameters) =>
             {
-                if(parameters.Count() != 2)
+                if (parameters.Count() != 2)
                 {
                     return;
                 }
@@ -192,7 +192,7 @@ namespace EntGen
                     writer.Write(true);
                 }
 
-                if(parameters[0] is not bool b)
+                if (parameters[0] is not bool b)
                 {
                     if (!Boolean.TryParse(parameters[0].ToString(), out b))
                     {
@@ -200,6 +200,46 @@ namespace EntGen
                     }
                 }
                 if (!b)
+                {
+                    writer.Write(true);
+                }
+            });
+
+            Handlebars.RegisterHelper("And", (writer, context, parameters) =>
+            {
+                if (parameters.Count() != 2)
+                {
+                    return;
+                }
+                if (parameters[0] is not bool a || parameters[1] is not bool b)
+                {
+                    if (!bool.TryParse(parameters[0].ToString(), out a) || !bool.TryParse(parameters[1].ToString(), out b))
+                    {
+                        return;
+                    }
+                }
+                if (a && b)
+                {
+                    writer.Write(true);
+                }
+            });
+
+            Handlebars.RegisterHelper("Or", (writer, context, parameters) =>
+            {
+                if (parameters.Count() != 2)
+                {
+                    return;
+                }
+                if (parameters[0] is not bool a || parameters[1] is not bool b)
+                {
+                    bool aSuccess = bool.TryParse(parameters[0].ToString(), out a);
+                    bool bSuccess = bool.TryParse(parameters[1].ToString(), out b);
+                    
+                    if(!aSuccess && !bSuccess){
+                        return;
+                    }
+                }
+                if (a || b)
                 {
                     writer.Write(true);
                 }

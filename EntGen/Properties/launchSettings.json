@@ -1,7 +1,9 @@
 {
   "profiles": {
     "EntGen": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "Config.xml EntityCreator entities",
+      "workingDirectory": ".\\Test"
     }
   }
 }
